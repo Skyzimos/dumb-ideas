@@ -1,6 +1,6 @@
 let originalHTML = '';
 let originalCSS = '';
-let pagesList = []; // Cache of pages
+let pagesList = [];
 let hasSavedOriginal = false;
 
 function saveOriginalContent() {
@@ -82,7 +82,6 @@ function loadPage(page) {
 
     document.body.appendChild(goBackButton);
 
-    // Dynamically load the page
     loadCSS(`${page}.css`);
     loadScript(`${page}.js`);
     loadContent(`${page}.html`);
@@ -91,10 +90,8 @@ function loadPage(page) {
 function goBack() {
     document.querySelector('.go-back-button')?.remove();
 
-    // Remove current CSS
     document.querySelectorAll('link[rel="stylesheet"]').forEach(link => link.remove());
 
-    // Restore original CSS
     originalCSS.split(' ').forEach(cssFile => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -102,10 +99,9 @@ function goBack() {
         document.head.appendChild(link);
     });
 
-    renderMainPage(); // Use the renderer instead of resetting HTML manually
+    renderMainPage();
 }
 
-// CSS/JS/HTML loader
 function loadCSS(file) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -127,5 +123,4 @@ function loadContent(file) {
         .catch(error => console.error('Error loading content:', error));
 }
 
-// Call once on page load
 window.addEventListener('DOMContentLoaded', loadPages);
