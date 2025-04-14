@@ -1,0 +1,11 @@
+.rock-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Comic Sans MS', cursive;
+}
+.quote {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}

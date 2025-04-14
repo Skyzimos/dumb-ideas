@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #fff1f3, #fceef5);
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(255, 192, 203, 0.25);
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    border: 1px solid #ffe4ec;
+    transition: all 0.3s ease;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #c44f7a;
+    margin-bottom: 1.2rem;
+}
+
+input {
+    padding: 0.6rem 0.8rem;
+    width: 85%;
+    margin: 0.4rem 0;
+    border-radius: 8px;
+    border: 1px solid #ffd1dc;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    background: #fff7f9;
+    transition: box-shadow 0.2s;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 182, 193, 0.6);
+    border-color: #ffb6c1;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: #e86b93;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #d6547d;
+}
+
+#result {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    color: #aa3f63;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+}
+
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255, 240, 246, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: #c44f7a;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
+.dots::after {
+    content: '';
+    display: inline-block;
+    animation: dots 1.2s steps(4, end) infinite;
+    width: 1ch;
+}
+
+@keyframes dots {
+    0% {
+        content: '';
+    }
+
+    25% {
+        content: '.';
+    }
+
+    50% {
+        content: '..';
+    }
+
+    75% {
+        content: '...';
+    }
+
+    100% {
+        content: '';
+    }
+}

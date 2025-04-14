@@ -1,0 +1,12 @@
+[
+    {
+      "name": "Name Compatibility",
+      "path": "name-compatability/nameCompatibility",
+      "directory": "name-compatability"
+    },
+    {
+        "name": "Emotional Support Rock",
+        "path": "emotional-support-rock/emotionalSupportRock",
+        "directory": "emotional-support-rock"
+    }
+]
