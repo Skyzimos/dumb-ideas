@@ -2,6 +2,7 @@ let originalHTML = '';
 let originalCSS = '';
 let pagesList = [];
 let hasSavedOriginal = false;
+let development = false;
 
 function saveOriginalContent() {
     if (hasSavedOriginal) return;
@@ -29,10 +30,10 @@ function renderMainPage() {
     pagesList.forEach(page => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => loadPage(`/pages/${page.path}`);
+        card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
 
         const image = document.createElement('img');
-        image.src = `/pages/${page.directory}/preview.png`;
+        image.src = `${development == false ? '/dumb-ideas' : ''}/pages/${page.directory}/preview.png`;
         image.alt = page.name;
 
         const title = document.createElement('div');
@@ -48,7 +49,7 @@ function renderMainPage() {
 }
 
 function loadPages() {
-    fetch('/pages/pages.json')
+    fetch(`${development == false ? '/dumb-ideas' : ''}/pages/pages.json`)
         .then(response => response.json())
         .then(pages => {
             pagesList = pages;
