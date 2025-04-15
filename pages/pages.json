@@ -8,5 +8,11 @@
         "name": "Emotional Support Rock",
         "path": "emotional-support-rock/emotionalSupportRock",
         "directory": "emotional-support-rock"
+    },
+    {
+        "name": "Joke Wednesday Article",
+        "path": "joke-wednesday/jokeWednesday",
+        "directory": "joke-wednesday",
+        "unlockWhen": "04/16/25"
     }
 ]

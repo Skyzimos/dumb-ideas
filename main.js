@@ -16,6 +16,16 @@ function saveOriginalContent() {
     hasSavedOriginal = true;
 }
 
+function showToast(message, duration = 3000) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, duration);
+}
+
 function renderMainPage() {
     const mainContainer = document.getElementById('main-container');
     const pageContainer = document.getElementById('page-container');
@@ -27,10 +37,12 @@ function renderMainPage() {
     const grid = document.createElement('div');
     grid.className = 'card-grid';
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ignore time differences
+
     pagesList.forEach(page => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
 
         const image = document.createElement('img');
         image.src = `${development == false ? '/dumb-ideas' : ''}/pages/${page.directory}/preview.png`;
@@ -39,6 +51,23 @@ function renderMainPage() {
         const title = document.createElement('div');
         title.className = 'card-title';
         title.textContent = page.name;
+
+        // Check if the page has an unlock date
+        if (page.unlockWhen) {
+            const unlockDate = new Date(page.unlockWhen);
+            unlockDate.setHours(0, 0, 0, 0);
+        
+            if (today < unlockDate) {
+                card.classList.add('locked');
+                title.textContent = `Available on ${page.unlockWhen}`;
+                card.onclick = () => showToast(`⚠️ "${page.name}" unlocks on ${page.unlockWhen}`);
+            } else {
+                card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
+            }
+        } else {
+            // No unlock date, accessible immediately
+            card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
+        }
 
         card.appendChild(image);
         card.appendChild(title);
