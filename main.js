@@ -120,7 +120,7 @@ function loadPage(page, options = {}) {
     // Only show Go Back button if not suppressed by options
     if (!options.hideGoBack || clickedFromMainPage == true) {
         clickedFromMainPage = false;
-
+        
         const goBackButton = document.createElement('button');
         goBackButton.className = 'go-back-button';
         goBackButton.textContent = 'Go Back';
