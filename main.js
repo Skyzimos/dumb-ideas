@@ -2,6 +2,7 @@ let originalHTML = '';
 let originalCSS = '';
 let pagesList = [];
 let hasSavedOriginal = false;
+let clickedFromMainPage = false;
 let development = false;
 
 function saveOriginalContent() {
@@ -62,11 +63,18 @@ function renderMainPage() {
                 title.textContent = `Available on ${page.unlockWhen}`;
                 card.onclick = () => showToast(`⚠️ "${page.name}" unlocks on ${page.unlockWhen}`);
             } else {
-                card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
+                card.onclick = () => {
+                    clickedFromMainPage = true;
+                    history.pushState(null, '', `?share=${page.path.replace('.html', '')}`);
+                    loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path.replace('.html', '')}`, { hideGoBack: true });
+                };
             }
         } else {
-            // No unlock date, accessible immediately
-            card.onclick = () => loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path}`);
+            card.onclick = () => {
+                clickedFromMainPage = true;
+                history.pushState(null, '', `?share=${page.path.replace('.html', '')}`);
+                loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${page.path.replace('.html', '')}`, { hideGoBack: true });
+            };
         }
 
         card.appendChild(image);
@@ -83,12 +91,24 @@ function loadPages() {
         .then(pages => {
             pagesList = pages;
             saveOriginalContent();
+
+            const sharedPage = getQueryParam('share');
+            if (sharedPage) {
+                const matchedPage = pages.find(p => p.path.replace('.html', '') === sharedPage);
+                if (matchedPage) {
+                    loadPage(`${development == false ? '/dumb-ideas' : ''}/pages/${matchedPage.path.replace('.html', '')}`, { hideGoBack: true });
+                    return;
+                } else {
+                    showToast("❌ Shared page not found");
+                }
+            }
+
             renderMainPage();
         })
         .catch(error => console.error('Error loading pages:', error));
 }
 
-function loadPage(page) {
+function loadPage(page, options = {}) {
     const mainContainer = document.getElementById('main-container');
     const pageContainer = document.getElementById('page-container');
 
@@ -97,20 +117,24 @@ function loadPage(page) {
     mainContainer.innerHTML = '';
     pageContainer.innerHTML = '';
 
-    const goBackButton = document.createElement('button');
-    goBackButton.className = 'go-back-button';
-    goBackButton.textContent = 'Go Back';
-    goBackButton.onclick = goBack;
-    Object.assign(goBackButton.style, {
-        position: 'absolute',
-        top: '10px',
-        left: '10px',
-        zIndex: '100',
-        padding: '0.6rem 1.5rem',
-        cursor: 'pointer'
-    });
+    // Only show Go Back button if not suppressed by options
+    if (!options.hideGoBack || clickedFromMainPage == true) {
+        clickedFromMainPage = false;
 
-    document.body.appendChild(goBackButton);
+        const goBackButton = document.createElement('button');
+        goBackButton.className = 'go-back-button';
+        goBackButton.textContent = 'Go Back';
+        goBackButton.onclick = goBack;
+        Object.assign(goBackButton.style, {
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            zIndex: '100',
+            padding: '0.6rem 1.5rem',
+            cursor: 'pointer'
+        });
+        document.body.appendChild(goBackButton);
+    }
 
     loadCSS(`${page}.css`);
     loadScript(`${page}.js`);
@@ -151,6 +175,11 @@ function loadContent(file) {
             document.getElementById('page-container').innerHTML = html;
         })
         .catch(error => console.error('Error loading content:', error));
+}
+
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
 }
 
 window.addEventListener('DOMContentLoaded', loadPages);
