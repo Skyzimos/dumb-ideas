@@ -10,6 +10,11 @@
         "directory": "emotional-support-rock"
     },
     {
+        "name": "Height Calculator",
+        "path": "height-calculator/heightCalculator",
+        "directory": "height-calculator"
+    },
+    {
         "name": "Joke Wednesday Article",
         "path": "joke-wednesday/jokeWednesday",
         "directory": "joke-wednesday",
