@@ -15,6 +15,11 @@
         "directory": "height-calculator"
     },
     {
+        "name": "Unsolicited Advice",
+        "path": "unsolicited-advice/unsolicitedAdvice",
+        "directory": "unsolicited-advice"
+    },
+    {
         "name": "Joke Wednesday Article",
         "path": "joke-wednesday/jokeWednesday",
         "directory": "joke-wednesday",

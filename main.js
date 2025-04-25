@@ -137,8 +137,8 @@ function loadPage(page, options = {}) {
     }
 
     loadCSS(`${page}.css`);
-    loadScript(`${page}.js`);
     loadContent(`${page}.html`);
+    loadScript(`${page}.js`);
 }
 
 function goBack() {
