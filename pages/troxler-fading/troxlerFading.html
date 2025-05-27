@@ -1,0 +1,23 @@
+  <!-- Dot and Faders -->
+  <div class="container">
+    <div class="dot"></div>
+    <div class="fader" style="top: 10px; left: 10px;"></div>
+    <div class="fader" style="top: 10px; right: 10px;"></div>
+    <div class="fader" style="bottom: 10px; left: 10px;"></div>
+    <div class="fader" style="bottom: 10px; right: 10px;"></div>
+  </div>
+
+  <!-- Warning Modal -->
+  <div class="modal show" id="warningModal">
+    <h2>Focus on the Center</h2>
+    <p>Keep your eyes fixed on the white dot in the center — do not look away or move your eyes at all.<br>~ The effect will not work otherwise. ~</p>
+    <button id="startButton">Begin</button>
+  </div>
+
+  <!-- Explanation Modal -->
+  <div class="modal" id="infoModal">
+    <h2>What Just Happened?</h2>
+    <p>What you experienced is called <strong>Troxler Fading</strong>. When you fixate your eyes on a central point, your brain gradually fades out the unchanging stimuli in your peripheral vision. This happens because of neural adaptation — your visual neurons stop responding to constant input to help you focus on motion or changes, which are usually more important for survival.</p>
+    <p>The interesting thing? The dots never fully disappeared. Although it may seem they did, we only reduced the brightness by about 75%.</p>
+    <button onclick="document.getElementById('infoModal').classList.remove('show')">Close</button>
+  </div>

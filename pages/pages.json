@@ -15,14 +15,14 @@
         "directory": "height-calculator"
     },
     {
-        "name": "Unsolicited Advice",
-        "path": "unsolicited-advice/unsolicitedAdvice",
-        "directory": "unsolicited-advice"
-    },
-    {
         "name": "Joke Wednesday Article",
         "path": "joke-wednesday/jokeWednesday",
         "directory": "joke-wednesday",
-        "unlockWhen": "04/16/25"
+        "unlockWhen": "05/27/25"
+    },
+    {
+        "name": "Unsolicited Advice",
+        "path": "unsolicited-advice/unsolicitedAdvice",
+        "directory": "unsolicited-advice"
     }
 ]
