@@ -15,9 +15,21 @@
         "directory": "height-calculator"
     },
     {
-        "name": "Joke Wednesday Article",
-        "path": "joke-wednesday/jokeWednesday",
-        "directory": "joke-wednesday",
+        "name": "Joke Wednesday Article (04/15/25)",
+        "path": "joke-wednesday-1/jokeWednesday",
+        "directory": "joke-wednesday-1",
+        "unlockWhen": "05/27/25"
+    },
+    {
+        "name": "Joke Wednesday Article (04/30/25)",
+        "path": "joke-wednesday-2/jokeWednesday",
+        "directory": "joke-wednesday-2",
+        "unlockWhen": "05/27/25"
+    },
+    {
+        "name": "Joke Wednesday Article (05/28/25)",
+        "path": "joke-wednesday-3/jokeWednesday",
+        "directory": "joke-wednesday-3",
         "unlockWhen": "05/27/25"
     },
     {
