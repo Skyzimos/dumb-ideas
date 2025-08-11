@@ -3,7 +3,7 @@ let originalCSS = '';
 let pagesList = [];
 let hasSavedOriginal = false;
 let clickedFromMainPage = false;
-let development = true;
+let development = false;
 
 function saveOriginalContent() {
     if (hasSavedOriginal) return;

@@ -41,7 +41,7 @@ function getNewAdvice() {
     return newAdvice;
 }
 
-document.getElementById("getAdviceButton").addEventListener("click", function() {
+function getAdvice() {
     const newAdvice = getNewAdvice();
     document.getElementById("advice").textContent = newAdvice;
-});
+}
