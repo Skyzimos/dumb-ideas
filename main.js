@@ -3,7 +3,7 @@ let originalCSS = '';
 let pagesList = [];
 let hasSavedOriginal = false;
 let clickedFromMainPage = false;
-let development = false;
+let development = true;
 
 function saveOriginalContent() {
     if (hasSavedOriginal) return;
@@ -27,7 +27,7 @@ function showToast(message, duration = 3000) {
     }, duration);
 }
 
-function renderMainPage() {
+function renderMainPage() {    
     const mainContainer = document.getElementById('main-container');
     const pageContainer = document.getElementById('page-container');
     pageContainer.innerHTML = '';
@@ -42,6 +42,10 @@ function renderMainPage() {
     today.setHours(0, 0, 0, 0); // Ignore time differences
 
     pagesList.forEach(page => {
+        if (page.path.includes('joke-wednesday')) {
+            return;
+        }
+
         const card = document.createElement('div');
         card.className = 'card';
 
