@@ -1,4 +1,5 @@
 let originalHTML = '';
+let originalBannerHTML = '';
 let originalCSS = '';
 let pagesList = [];
 let hasSavedOriginal = false;
@@ -9,7 +10,9 @@ function saveOriginalContent() {
     if (hasSavedOriginal) return;
 
     const mainContainer = document.getElementById('main-container');
+    const informationContainer = document.getElementById('information-wrapper');
     originalHTML = mainContainer.innerHTML;
+    originalBannerHTML = informationContainer.innerHTML;
 
     const linkTags = document.querySelectorAll('link[rel="stylesheet"]');
     originalCSS = Array.from(linkTags).map(link => link.href).join(' ');
@@ -27,13 +30,16 @@ function showToast(message, duration = 3000) {
     }, duration);
 }
 
-function renderMainPage() {    
+function renderMainPage() {
     const mainContainer = document.getElementById('main-container');
+    const informationContainer = document.getElementById('information-wrapper');
     const pageContainer = document.getElementById('page-container');
     pageContainer.innerHTML = '';
 
     // Restore original HTML
     mainContainer.innerHTML = originalHTML;
+    informationContainer.innerHTML = originalBannerHTML;
+    informationContainer.style.display = 'block';
 
     const grid = document.createElement('div');
     grid.className = 'card-grid';
@@ -57,11 +63,19 @@ function renderMainPage() {
         title.className = 'card-title';
         title.textContent = page.name;
 
+        // 👇 ADD THIS — "New" badge if page.new is true
+        if (page.new) {
+            const badge = document.createElement('span');
+            badge.className = 'card-badge';
+            badge.textContent = 'New';
+            card.appendChild(badge);
+        }
+
         // Check if the page has an unlock date
         if (page.unlockWhen) {
             const unlockDate = new Date(page.unlockWhen);
             unlockDate.setHours(0, 0, 0, 0);
-        
+
             if (today < unlockDate) {
                 card.classList.add('locked');
                 title.textContent = `Available on ${page.unlockWhen}`;
@@ -114,17 +128,20 @@ function loadPages() {
 
 function loadPage(page, options = {}) {
     const mainContainer = document.getElementById('main-container');
+    const informationContainer = document.getElementById('information-wrapper');
     const pageContainer = document.getElementById('page-container');
 
     saveOriginalContent();
 
+    informationContainer.innerHTML = '';
+    informationContainer.style.display = 'none';
     mainContainer.innerHTML = '';
     pageContainer.innerHTML = '';
 
     // Only show Go Back button if not suppressed by options
     if (!options.hideGoBack || clickedFromMainPage == true) {
         clickedFromMainPage = false;
-        
+
         const goBackButton = document.createElement('button');
         goBackButton.className = 'go-back-button';
         goBackButton.textContent = 'Go Back';

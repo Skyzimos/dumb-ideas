@@ -2,39 +2,46 @@
     {
       "name": "Name Compatibility",
       "path": "name-compatability/nameCompatibility",
-      "directory": "name-compatability"
+      "directory": "name-compatability",
+      "new": false
     },
     {
         "name": "Emotional Support Rock",
         "path": "emotional-support-rock/emotionalSupportRock",
-        "directory": "emotional-support-rock"
+        "directory": "emotional-support-rock",
+        "new": false
     },
     {
         "name": "Height Calculator",
         "path": "height-calculator/heightCalculator",
-        "directory": "height-calculator"
+        "directory": "height-calculator",
+        "new": false
     },
     {
         "name": "Joke Wednesday Article (04/15/25)",
         "path": "joke-wednesday-1/jokeWednesday",
         "directory": "joke-wednesday-1",
-        "unlockWhen": "05/27/25"
+        "unlockWhen": "05/27/25",
+        "new": false
     },
     {
         "name": "Joke Wednesday Article (04/30/25)",
         "path": "joke-wednesday-2/jokeWednesday",
         "directory": "joke-wednesday-2",
-        "unlockWhen": "05/27/25"
+        "unlockWhen": "05/27/25",
+        "new": false
     },
     {
         "name": "Joke Wednesday Article (05/28/25)",
         "path": "joke-wednesday-3/jokeWednesday",
         "directory": "joke-wednesday-3",
-        "unlockWhen": "05/27/25"
+        "unlockWhen": "05/27/25",
+        "new": false
     },
     {
         "name": "Unsolicited Advice",
         "path": "unsolicited-advice/unsolicitedAdvice",
-        "directory": "unsolicited-advice"
+        "directory": "unsolicited-advice",
+        "new": false
     }
 ]
