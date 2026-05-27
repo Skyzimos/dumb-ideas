@@ -46,6 +46,13 @@
         "new": true
     },
     {
+        "name": "Joke Wednesday Article (05/27/25)",
+        "path": "joke-wednesday-5/jokeWednesday",
+        "directory": "joke-wednesday-5",
+        "unlockWhen": "05/27/25",
+        "new": true
+    },
+    {
         "name": "Unsolicited Advice",
         "path": "unsolicited-advice/unsolicitedAdvice",
         "directory": "unsolicited-advice",
